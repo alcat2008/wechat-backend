@@ -1,0 +1,37 @@
+{
+  "name": "wechat-backend",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": "https://github.com/alcat2008/wechat-backend.git",
+  "author": "戈洋洋 <ge_yangyang@126.com>",
+  "license": "MIT",
+  "scripts": {
+    "precommit": "lint-staged",
+    "start": "athena start",
+    "prettier": "prettier --write \"**/*.{js,ts,jsx,less}\""
+  },
+  "dependencies": {
+    "@koa/cors": "^2.2.1",
+    "chalk": "^2.4.1",
+    "koa": "^2.5.1",
+    "koa-body": "^4.0.4",
+    "koa-error": "^3.2.0",
+    "koa-logger": "^3.2.0",
+    "react-dev-utils": "^5.0.1",
+    "request": "^2.87.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.12.0",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-config-prettier": "^2.9.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.2.0",
+    "prettier": "^1.13.7"
+  },
+  "lint-staged": {
+    "**/*.{js,ts,jsx,less}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
