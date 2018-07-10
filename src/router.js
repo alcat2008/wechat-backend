@@ -3,16 +3,16 @@ const Router = require('koa-router');
 const mapper = require('./mapper');
 const { getAccessToken } = require('./services/authority');
 
-const router = new Router()
+const router = new Router();
 
 router.all('/token', async (ctx, next) => {
-  const accessToken = await getAccessToken()
+  const accessToken = await getAccessToken();
   ctx.body = {
     code: 0,
     errmsg: '接口响应描述',
-    data: accessToken
-  }
-})
+    data: accessToken,
+  };
+});
 
 // Object.keys(mapper).forEach(m => {
 //   router.all(m, (ctx, next) => {
@@ -23,5 +23,4 @@ router.all('/token', async (ctx, next) => {
 //   });
 // });
 
-
-module.exports = router
+module.exports = router;

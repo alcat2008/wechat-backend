@@ -3,7 +3,7 @@
 const { MongoClient } = require('mongodb');
 const qs = require('qs');
 const { mongodbUrl, appId, appSecret } = require('../config');
-const fetch = require('./fetch')
+const fetch = require('./fetch');
 
 /**
  * collection - authority
@@ -13,8 +13,8 @@ const fetch = require('./fetch')
  *   expire_time - 过期时间
  * }
  */
-const DB_NAME = 'wechat'
-const COLLECTION_NAME = 'authority'
+const DB_NAME = 'wechat';
+const COLLECTION_NAME = 'authority';
 
 // function updateAccessToken(appId, accessToken) {
 //   console.log('***  getAccessToken  ***')
@@ -45,27 +45,33 @@ const COLLECTION_NAME = 'authority'
 // }
 
 exports.getAccessToken = async function getAccessToken() {
-  console.log('***  getAccessToken  ***')
-  let client = null
+  console.log('***  getAccessToken  ***');
+  let client = null;
 
   try {
-    client = await MongoClient.connect(mongodbUrl, { useNewUrlParser: true })
+    client = await MongoClient.connect(
+      mongodbUrl,
+      { useNewUrlParser: true }
+    );
 
     // 1. 连接到表
-    const collection = client.db(DB_NAME).collection(COLLECTION_NAME)
+    const collection = client.db(DB_NAME).collection(COLLECTION_NAME);
 
     // 2. 查询数据
-    const resultFind = await collection.find({ app_id: appId }).toArray()
-    console.log('collection.find: ', resultFind)
+    const resultFind = await collection.find({ app_id: appId }).toArray();
+    console.log('collection.find: ', resultFind);
 
     if (resultFind.length > 0 && resultFind[0].expire_time > new Date().getTime()) {
       return resultFind[0].access_token;
     }
 
     // 集合中还没有数据 或者 集合中数据已过期
-    const url = `cgi-bin/token?grant_type=client_credential&${qs.stringify({ appid: appId, secret: appSecret })}` // eslint-disable-line
-    const res = await fetch(url)
-    console.log('fetch token : ', res)
+    const url = `cgi-bin/token?grant_type=client_credential&${qs.stringify({
+      appid: appId,
+      secret: appSecret,
+    })}`; // eslint-disable-line
+    const res = await fetch(url);
+    console.log('fetch token : ', res);
 
     // 3. 插入数据
     await collection.update(
@@ -73,20 +79,21 @@ exports.getAccessToken = async function getAccessToken() {
       {
         $set: {
           access_token: res.access_token,
-          expire_time: new Date().getTime() + res.expires_in
-        }
+          expire_time: new Date().getTime() + res.expires_in,
+        },
       },
       {
-        upsert: true
-      });
+        upsert: true,
+      }
+    );
 
-    console.log('Success updated!')
-    return res.access_token
+    console.log('Success updated!');
+    return res.access_token;
   } catch (e) {
-    console.error('MongoDB error: ', e)
+    console.error('MongoDB error: ', e);
     return e;
   } finally {
     // 释放连接
     client && client.close();
   }
-}
+};
