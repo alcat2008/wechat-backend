@@ -5,13 +5,14 @@ const Koa = require('koa');
 const logger = require('koa-logger');
 const cors = require('@koa/cors');
 // const error = require('koa-error')
+const router = require('./src/router');
+const { port } = require('./src/config');
 
 const app = new Koa();
-const port = 3000;
 
-app.use(logger()).use(cors());
-// .use(router.routes())
-// .use(router.allowedMethods())
+app.use(logger()).use(cors())
+.use(router.routes())
+.use(router.allowedMethods());
 
 // x-response-time
 // app.use(async (ctx, next) => {
