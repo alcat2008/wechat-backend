@@ -3,7 +3,7 @@
 const { MongoClient } = require('mongodb');
 const qs = require('qs');
 const { mongodbUrl, appId, appSecret } = require('../config');
-const fetch = require('./fetch');
+const fetcher = require('./fetcher');
 
 /**
  * collection - authority
@@ -70,7 +70,7 @@ exports.getAccessToken = async function getAccessToken() {
       appid: appId,
       secret: appSecret,
     })}`; // eslint-disable-line
-    const res = await fetch(url);
+    const res = await fetcher.get(url);
     console.log('fetch token : ', res);
 
     // 3. 插入数据

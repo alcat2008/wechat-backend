@@ -14,17 +14,18 @@
   },
   "dependencies": {
     "@koa/cors": "^2.2.1",
+    "axios": "^0.18.0",
+    "busboy": "^0.2.14",
     "chalk": "^2.4.1",
     "commander": "^2.16.0",
+    "ejs": "^2.6.1",
     "koa": "^2.5.1",
     "koa-body": "^4.0.4",
     "koa-error": "^3.2.0",
     "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0",
-    "mongodb": "^3.1.1",
-    "qs": "^6.5.2",
-    "react-dev-utils": "^5.0.1",
-    "request": "^2.87.0"
+    "koa-views": "^6.1.4",
+    "mongodb": "^3.1.1"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
