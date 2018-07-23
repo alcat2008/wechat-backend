@@ -1,0 +1,89 @@
+.activity_form {
+  font-family: Monospaced Number,Chinese Quote,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(0,0,0,.65);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.activity_form > div {
+  margin-bottom: 24px;
+  vertical-align: top;
+}
+
+.activity_form label {
+  text-align: right;
+  vertical-align: middle;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  min-width: 6em;
+  margin-right: 1em;
+  color: rgba(0,0,0,.85);
+}
+
+select, input {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  display: inline-block;
+  padding: 4px 11px;
+  width: 600px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(0,0,0,.65);
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  transition: all .3s;
+}
+
+textarea {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  display: inline-block;
+  padding: 4px 11px;
+  width: 600px;
+  font-size: 14px;
+  color: rgba(0,0,0,.65);
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  transition: all .3s;
+}
+
+.activity_detail_label {
+  vertical-align: inherit !important;
+}
+
+.activity_add_button {
+  line-height: 1.5;
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 0 15px;
+  font-size: 14px;
+  border-radius: 4px;
+  height: 32px;
+  user-select: none;
+  transition: all .3s cubic-bezier(.645,.045,.355,1);
+  position: relative;
+  color: rgba(0,0,0,.65);
+  background-color: #fff;
+  border-color: #d9d9d9;
+  color: #fff;
+  background-color: #1890ff;
+  border-color: #1890ff;
+  margin-left: 7em;
+}

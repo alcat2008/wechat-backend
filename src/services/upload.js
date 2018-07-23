@@ -3,7 +3,6 @@ const path = require('path');
 const os = require('os');
 const fs = require('fs');
 const Busboy = require('busboy');
-const request = require('request');
 
 /**
  * 同步创建文件目录
@@ -72,27 +71,6 @@ function uploadFile(ctx, options) {
       file.on('end', function() {
         result.success = true;
         result.message = '文件上传成功';
-
-        request(
-          {
-            method: 'GET',
-            uri: WECHAT_API + url,
-            json: true,
-          },
-          (error, response, body) => {
-            if (!error && response.statusCode === 200) {
-              // console.log(JSON.stringify(body))
-              if (body.errcode !== undefined && body.errcode !== 0) {
-                reject(body);
-              } else {
-                resolve(body);
-              }
-            } else {
-              console.log(JSON.stringify(error));
-              reject(error);
-            }
-          }
-        );
 
         console.log('文件上传成功！');
         resolve(result);

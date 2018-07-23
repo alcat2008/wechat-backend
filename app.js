@@ -2,6 +2,7 @@ const path = require('path');
 const chalk = require('chalk');
 
 const Koa = require('koa');
+const serve = require('koa-static');
 const body = require('koa-body');
 const views = require('koa-views');
 const logger = require('koa-logger');
@@ -11,6 +12,15 @@ const router = require('./src/router');
 const { port } = require('./src/config');
 
 const app = new Koa();
+
+app.use(serve(path.join(__dirname, './src/assets')));
+
+// 加载模板引擎
+app.use(
+  views(path.join(__dirname, './src/views'), {
+    extension: 'ejs',
+  })
+);
 
 app
   .use(
@@ -33,13 +43,6 @@ app
 //   const ms = Date.now() - start
 //   ctx.set('X-Response-Time', `${ms}ms`)
 // })
-
-// 加载模板引擎
-app.use(
-  views(path.join(__dirname, './src/views'), {
-    extension: 'ejs',
-  })
-);
 
 // response
 app.use(async ctx => {

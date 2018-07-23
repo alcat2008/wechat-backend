@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>亲子活动添加页面</title>
+  <link href="/style.css" rel="stylesheet">
+</head>
+<body>
+  <h1>亲子活动添加页面</h1>
+  <form class="activity_form" method="POST" action="/api/family/activities/add" method="post" target="_blank">
+    <div>
+      <label>来源: </label>
+      <select name="source">
+        <option value="caibeike">彩贝壳</option>
+        <option value="xialv">侠侣</option>
+        <option value="lvmama">驴妈妈</option>
+      </select>
+    </div>
+    <div>
+      <label>名称: </label><input name="name" type="text" />
+    </div>
+    <div>
+      <label>缩略图: </label><input name="thumbnail" type="text" />
+    </div>
+    <div>
+      <label>链接地址: </label><input name="url" type="text" />
+    </div>
+    <div>
+      <label class="activity_detail_label">简介: </label><textarea name="brief" type="text" rows="5"></textarea>
+    </div>
+    <button class="activity_add_button" type="submit">保存</button>
+  </form>
+</body>
+</html>

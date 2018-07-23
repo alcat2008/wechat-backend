@@ -9,7 +9,7 @@ program
   .option('-p, --port [port]', 'set server port [3003]', '3003')
   .option(
     '--mongodb [mongodb]',
-    'set host for redis [mongodb://127.0.0.1:27017/]',
+    'set host for mongodb [mongodb://127.0.0.1:27017/]',
     'mongodb://127.0.0.1:27017/'
   )
   .option('-ai, --appid [appid]', 'set appid')

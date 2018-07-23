@@ -4,14 +4,39 @@ const Router = require('koa-router');
 const mapper = require('./mapper');
 const { getAccessToken } = require('./services/authority');
 const { uploadFile } = require('./services/upload');
+const { getActivities, addActivity } = require('./services/family');
 
 const router = new Router();
+
+router.all('/activity', async (ctx, next) => {
+  await ctx.render('activity');
+});
+
+router.post('/api/family/activities', async (ctx, next) => {
+  const { currentPage, pageSize } = ctx.request.body;
+  const activities = await getActivities(currentPage, pageSize);
+  ctx.body = {
+    code: 0,
+    errmsg: '成功',
+    data: activities,
+  };
+});
+
+router.post('/api/family/activities/add', async (ctx, next) => {
+  const submiteData = ctx.request.body;
+  const retValue = await addActivity(submiteData);
+  ctx.body = {
+    code: 0,
+    errmsg: '成功',
+    data: retValue,
+  };
+});
 
 router.all('/token', async (ctx, next) => {
   const accessToken = await getAccessToken();
   ctx.body = {
     code: 0,
-    errmsg: '接口响应描述',
+    errmsg: '成功',
     data: accessToken,
   };
 });
